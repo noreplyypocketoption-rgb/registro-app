@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Registro YURIBEX</title>
+</head>
+<body>
+
+<h2>Formulario de Registro</h2>
+
+<form id="form">
+  <input type="text" placeholder="Nombre" id="nombre" required><br><br>
+  <input type="email" placeholder="Email" id="email" required><br><br>
+  <input type="text" placeholder="Usuario" id="username" required><br><br>
+  <input type="password" placeholder="Contraseña" id="password" required><br><br>
+  <input type="text" placeholder="País" id="pais"><br><br>
+  <input type="text" placeholder="Teléfono" id="telefono"><br><br>
+
+  <button type="submit">Enviar</button>
+</form>
+
+<script>
+document.getElementById('form').addEventListener('submit', async (e) => {
+  e.preventDefault();
+
+  const data = {
+    nombre: document.getElementById('nombre').value,
+    email: document.getElementById('email').value,
+    username: document.getElementById('username').value,
+    password: document.getElementById('password').value,
+    pais: document.getElementById('pais').value,
+    telefono: document.getElementById('telefono').value
+  };
+
+  const res = await fetch('/register', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data)
+  });
+
+  const result = await res.json();
+  alert(result.message);
+});
+</script>
+
+</body>
+  </html>
